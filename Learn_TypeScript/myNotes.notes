@@ -1,0 +1,10 @@
+To install typescript 
+--> npm i -g typescript
+
+use this  (-w ) for continue watching the change in the file 
+tsc .\sample.ts -w
+
+✔ extension for typescript file is {Pretty TypeScript Errors}
+
+generate the confing file  --> tsc --init
+after that goto tsconfig.json file and search for  "rootDir" "./src" ,  "outDir": "./dist", 
