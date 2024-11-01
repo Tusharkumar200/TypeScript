@@ -40,7 +40,7 @@ const rootSlice = createSlice({
         increment: (state) =>{state.count +=1;},
         decrement: (state) =>{state.count -=1;},
         incrementByValue: (state,action:PayloadAction<number>)=>{
-            state.count = action.payload;
+            state.count += action.payload;
         }
     },
 });
