@@ -1,4 +1,4 @@
-import UseReducer from "./components/UseReducer";
+import CountByRedux from "./components/CountByRedux";
 
 function App() {
   // const [val, setVal] = useState <string>("");
@@ -15,7 +15,9 @@ function App() {
         <Generic label="Search" value={val} setter={setVal}/>
 
         <UseContext /> */}
-        <UseReducer />
+        {/* <UseReducer /> */}
+
+        <CountByRedux />
       </div>
     </>
   );
