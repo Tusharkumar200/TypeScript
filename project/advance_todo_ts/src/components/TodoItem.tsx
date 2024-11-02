@@ -7,6 +7,7 @@ type PropsType = {
   completeHandler: (id: TodoItemType["id"]) => void;
 };
 
+
 const TodoItem = ({ todo,completeHandler, deleteHandler}: PropsType) => {
   return (
     <Paper sx={{ padding: '1rem' }}>
@@ -14,9 +15,9 @@ const TodoItem = ({ todo,completeHandler, deleteHandler}: PropsType) => {
         <Typography marginRight={'auto'} variant="body1">
           {todo.title}
         </Typography>
-        <Checkbox />
-        <Button> <Edit/> </Button>
-        <Button><Delete/> </Button>
+        <Checkbox checked={todo.isCompleted} onChange={()=>completeHandler(todo.id)}/>
+        <Button onClick={()=> deleteHandler(todo.id) }><Delete/> </Button>
+        <Button onClick={()=> completeHandler(todo.id) }> <Edit/> </Button>
       </Stack>
     </Paper>
   );
