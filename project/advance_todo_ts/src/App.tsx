@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { AppBar, Button, Container, Stack,  TextField, Toolbar, Typography } from "@mui/material";
+import TodoItem from "./components/TodoItem";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState<TodoItemType[]>([
+    { id: "1", title: "Learn React", isCompleted: false },
+    { id: "2", title: "Learn TypeScript", isCompleted: false },
+    { id: "3", title: "Learn React Native", isCompleted: false },
+  ]);
+
+  const completeHandler = (id: TodoItemType["id"]): void => {};
+  const deleteHandler = (id: TodoItemType["id"]): void => {};
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Container maxWidth="sm" sx={{height:'100vh'}}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography>To-Do App</Typography>
+        </Toolbar>
+      </AppBar>
+      <Stack height={"80%"} direction={"column"} spacing={"1rem"} p={"1rem"}>
+        {todos.map((i) => (
+          <TodoItem deleteHandler={deleteHandler} completeHandler ={completeHandler} key={i.id} todo={i}  />
+        ))}
+        
+      </Stack>
+      <TextField fullWidth label={'Add Task'}/>
+      <Button sx={{margin: '1rem 0'}} fullWidth variant ='contained'>Add</Button>
+    </Container>
+  );
 }
 
-export default App
+export default App;
