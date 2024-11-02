@@ -35,10 +35,9 @@ const TodoItem = ({
             value={textVal}
             onChange={(e) => setTextVal(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === "Enter" && textVal != ""){
-
-                  editHandler(todo.id, textVal);
-                  setEditActive(false);
+              if (e.key === "Enter" && textVal != "") {
+                editHandler(todo.id, textVal);
+                setEditActive(false);
               }
             }}
           />
@@ -47,19 +46,16 @@ const TodoItem = ({
             {todo.title}
           </Typography>
         )}
-        <Typography marginRight={"auto"} variant="body1">
-          {todo.title}
-        </Typography>
         <Checkbox
           checked={todo.isCompleted}
           onChange={() => completeHandler(todo.id)}
         />
-        <Button onClick={() => deleteHandler(todo.id)}>
-          <Delete />{" "}
-        </Button>
+        
         <Button onClick={() => setEditActive((prev) => !prev)}>
-          
-          {editActive ? "Done": <Edit />}
+          {editActive ? "Done" : <Edit />}
+        </Button>
+        <Button onClick={() => deleteHandler(todo.id)}>
+          <Delete />
         </Button>
       </Stack>
     </Paper>
