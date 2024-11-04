@@ -17,10 +17,10 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/learning" element={<Learning />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/result" element={<Result />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/learn" element={<Learning />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

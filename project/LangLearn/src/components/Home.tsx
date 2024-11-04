@@ -25,7 +25,7 @@ function Home() {
   const navigate = useNavigate();
 
   const languageSelectHandler =(language: string):void=>{
-    navigate(`/learn?language=${language}`) ;
+    navigate(`/learn?language=${language}`);
   };
 
   return (
