@@ -3,8 +3,9 @@ import { Button, Container, Stack, Typography } from "@mui/material";
 import {  useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { translateWords } from "../utils/features";
-import { useDispatch } from "react-redux";
-import { getWordsFail, getWordsRequest, getWordsSuccess } from "../redux/slices";
+import { useDispatch, useSelector } from "react-redux";
+import { clearState, getWordsFail, getWordsRequest, getWordsSuccess } from "../redux/slices";
+import Loader from "./Loader";
 
 const Learning = () => {
   const [count, setCount] = useState<number>(0);
@@ -12,6 +13,7 @@ const Learning = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
+  const {loading , error, words} = useSelector((state: {root: StateType}) => state.root);
 
   const nextHandler = (): void => {
     setCount((prev) => prev + 1);
@@ -22,8 +24,14 @@ const Learning = () => {
     translateWords( params ||"hi")
     .then((arr) => dispatch(getWordsSuccess(arr)))
     .catch(err=>{console.log(err);dispatch(getWordsFail(err));});
+
+    if(error){
+      console.log("Error Occured: ", error);
+      dispatch(clearState());
+    }
   }, []);
 
+  if(loading) return <Loader />
   return (
     <Container maxWidth="sm" sx={{ padding: "1rem" }}>
       <Button
@@ -38,10 +46,10 @@ const Learning = () => {
 
       <Stack direction={"row"}>
         <Typography variant={"h4"}>
-          {count + 1} - {"Sample"}
+          {count + 1} - {words[count]?.word}
         </Typography>
         <Typography color={"blue"} variant="h4">
-          : {"Lol"}
+          : {words[count]?.mening}
         </Typography>
         <Button sx={{ borderRadius: "50%" }}>
           {" "}
@@ -53,9 +61,9 @@ const Learning = () => {
         sx={{ margin: "3rem 0" }}
         fullWidth
         variant="contained"
-        onClick={count === 7 ? () => navigate("/quiz") : nextHandler}
+        onClick={count === words.length-1 ? () => navigate("/quiz") : nextHandler}
       >
-        {count === 7 ? "Test" : "Next"}
+        {count === words.length-1 ? "Test" : "Next"}
       </Button>
     </Container>
   );

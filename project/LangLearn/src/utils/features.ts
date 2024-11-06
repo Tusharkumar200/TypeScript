@@ -16,9 +16,9 @@ export const translateWords = async (params:LangType): Promise<WordType[]> => {
             textType: 'plain'
           },
           headers: {
+            'Content-Type': 'application/json',
             'x-rapidapi-key': 'e0d92af953msh41c5694dc80e73bp12c173jsn4089507f9469',
             'x-rapidapi-host': 'microsoft-translator-text.p.rapidapi.com',
-            'Content-Type': 'application/json'
           },
     })
 
@@ -35,6 +35,7 @@ export const translateWords = async (params:LangType): Promise<WordType[]> => {
     return arr;
   } catch (error) {
     console.log(error);
-    throw new Error("Some Error...")
+    throw new Error("Some Error...");
+     
   }
 };
