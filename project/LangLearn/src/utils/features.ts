@@ -99,9 +99,9 @@ export const fetchAudio = async (
 
   const {data}:{data:string} = await axios.post("https://voicerss-text-to-speech.p.rapidapi.com/", encodedParams, {
 
-    params: {key: "69396baac5f9441f9d3ac22d8c050133"},
+    params: {key: key},
     headers: {
-      "x-rapidapi-key": VITE_RAPID_API,
+      "x-rapidapi-key": rapidKey,
       "x-rapidapi-host": "voicerss-text-to-speech.p.rapidapi.com",
     },
   })
