@@ -11,7 +11,7 @@ const Result = () => {
   const { words, result} = useSelector((state: {root: StateType}) => state.root);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const correctAns = countMatchingElements(result, words.map(i => i.mening))
+  const correctAns = countMatchingElements(result, words.map(i => i.meaning))
   const percentage = (correctAns / words.length) * 100;
 
   const resetHandler = ():void =>{
@@ -41,7 +41,7 @@ const Result = () => {
           <List>
             {
               words.map((i, idx)=>(
-                <ListItem key={idx}>{idx +1} - {i.mening}</ListItem>)
+                <ListItem key={idx}>{idx +1} - {i.meaning}</ListItem>)
               )
             }
           </List>

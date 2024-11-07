@@ -4,7 +4,7 @@ type LangType = 'ja' |'hi' | 'es'| 'fr';
 
 type WordType={
     word: string;
-    mening: string;
+    meaning: string;
     options:string[];
 }
 
@@ -20,3 +20,4 @@ type FetchedDataType = {
         text: string;
     }[]
 }
+
