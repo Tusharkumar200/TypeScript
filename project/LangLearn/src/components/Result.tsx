@@ -1,18 +1,23 @@
 import { Button, Container, List, ListItem, Stack, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { clearState } from "../redux/slices";
+import { useNavigate } from "react-router-dom";
+import { countMatchingElements } from "../utils/features";
 
 
-const result = ["Lol", "Sample", "Ans"];
-const words =[
-  {
-    meaning: "Asdsa",
-  },
-  {
-    meaning: "Asdsdsfda",
-  },
-]
+
+
 const Result = () => {
-  const correctAns = 5;
+  const { words, result} = useSelector((state: {root: StateType}) => state.root);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const correctAns = countMatchingElements(result, words.map(i => i.mening))
   const percentage = (correctAns / words.length) * 100;
+
+  const resetHandler = ():void =>{
+    navigate('/');
+    dispatch(clearState());
+  }
 
   return (
     <Container maxWidth={'sm'}>
@@ -36,7 +41,7 @@ const Result = () => {
           <List>
             {
               words.map((i, idx)=>(
-                <ListItem key={idx}>{idx +1} - {i.meaning}</ListItem>)
+                <ListItem key={idx}>{idx +1} - {i.mening}</ListItem>)
               )
             }
           </List>
@@ -45,7 +50,7 @@ const Result = () => {
 
         <Typography variant="h5" m={"1rem"} color={percentage > 50 ? "green": "red"}>You got {percentage > 50? "Pass": "Fail"}</Typography>
 
-        <Button sx={{margin: "1rem"}} variant="contained">Reset</Button>
+        <Button onClick={resetHandler} sx={{margin: "1rem"}} variant="contained">Reset</Button>
     </Container>
   )
 }
